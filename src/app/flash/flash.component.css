@@ -3,3 +3,11 @@
   flex-wrap: wrap;
   display: flex;
 }
+
+ mat-card-header.correct {
+  background: green;
+}
+
+mat-card-header.incorrect {
+  background: red;
+}

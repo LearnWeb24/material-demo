@@ -8,6 +8,8 @@ import { IFlash } from './flash';
 })
 
 export class AppComponent {
+  editng = false;
+  editingId: number;
   flashs: IFlash[] = [{
     question: 'Question 1',
     answer: 'Answer 1',
@@ -30,9 +32,32 @@ trackById(index: number, flash: IFlash) {
 }
 
 handleToggleCard(id) {
-  console.log(id);
+
   const flash = this.flashs.find((item) => item.id === id);
+  console.log(flash);
   flash.show = ! flash.show;
+
+}
+
+handleDelete(id){
+  const flashId = this.flashs.findIndex( flash => flash.id === id);
+
+  this.flashs.splice(flashId,1);
+
+}
+
+handleEdit(id){
+
+this.editng = true;
+this.editingId = id;
+
+
+
+}
+
+handleRememberedChange({id, flag}){
+  const flash = this.flashs.find((flash) => flash.id ===id);
+  flash.remembered = flag;
 
 }
 
