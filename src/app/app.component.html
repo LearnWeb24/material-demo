@@ -1,1 +1,29 @@
-<button mat-button>test</button>
+<div class="formInput">
+  <form>
+    <div>
+      <label for="">Question</label>
+      <input type="text" name="question">
+    </div>
+    <div>
+      <label for="">Answer</label>
+      <input type="text" name="Answer">
+    </div>
+
+    <div>
+
+      <button mat-button class = "submit" type="submit">Submit </button>
+      <button mat-button class="reset">Reset</button>
+
+    </div>
+  </form>
+</div>
+
+<br>
+<br>
+
+<div>
+  <app-flash *ngFor="let flash of flashs; trackBy : trackById"
+             [flash]='flash'
+             (onToggleCard) = "handleToggleCard($event)"></app-flash>
+</div>
+
