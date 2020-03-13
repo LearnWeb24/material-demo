@@ -1,8 +1,11 @@
 <div class="formInput">
-  <form>
+  <form #flashForm="ngForm" >
     <div>
       <label for="">Question</label>
-      <input type="text" name="question">
+      <div class="control" >
+      <input type="text" name="question" #question [(ngModel)]="flash.question"
+      [ngClass]="{'is-danger': question.invalid && !question.pristine}">
+      </div>
     </div>
     <div>
       <label for="">Answer</label>
@@ -11,8 +14,8 @@
 
     <div>
 
-      <button mat-button class = "submit" type="submit">Submit </button>
-      <button mat-button class="reset">Reset</button>
+      <button mat-button  (click)="handleSubmit()" class = "submit" type="submit">Submit </button>
+      <button mat-button (click)="handleReset()" class="reset">Reset</button>
 
     </div>
   </form>
@@ -23,7 +26,7 @@
 
 <div>
   <app-flash *ngFor="let flash of flashs; trackBy : trackById"
-             [flash]='flash'
+             [flash]="flash"
              (onToggleCard) = "handleToggleCard($event)"
              (onDelete)="handleDelete($event)"
              (onEdit)="handleEdit($event)"
